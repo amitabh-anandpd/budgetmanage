@@ -14,6 +14,8 @@ from .forms import LoginForm, SignupForm
 from .models import User
 
 def auth(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     if request.method == 'POST':
         if "login_submit" in request.POST:
             login_form = LoginForm(request.POST)
